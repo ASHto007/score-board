@@ -1,0 +1,348 @@
+/* General body styles */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background: url('img1.jpg') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+}
+.app {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 800px;
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+h4 {
+    text-align: center;
+    padding: 5px;
+    text-transform: uppercase;
+}
+h3{
+    background: #f4225a;
+    padding: 10px;
+    width:50%;
+    text-align: center;
+    text-transform: uppercase;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Root container styling */
+#root {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    max-width: 800px;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+/* Header styling */
+h2 {
+    padding: 20px;
+    text-align: center;
+    color: #f1f1f1;
+    border-radius: 12px;
+    background: rgb(29, 138, 255);
+    margin-bottom: 10px;
+}
+
+/* Scores section styling */
+#total{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.score {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+    padding: 15px;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.score .team1, .score .team2 {
+    flex: 1;
+    padding: 10px;
+    border-radius: 12px;
+    transition: background 0.3s ease;
+}
+
+.active-team {
+    background-color: #f4225a;
+}
+/* Buttons container styling */
+
+
+/* Individual button styling */
+button, #formBtn button {
+    padding: 10px 20px;
+    border: none;
+    font-size: 16px;
+    margin: 10px;
+    border-radius: 8px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+    background-color: #1d8aff;
+    color: #fff;
+    cursor: pointer;
+}
+
+button:hover, #formBtn button:hover {
+    background-color: #0056b3;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+    transform: translateY(-3px);
+}
+
+button:active, #formBtn button:active {
+    transform: translateY(-1px) scale(0.97);
+}
+
+#toggleBtn{
+    background-color: #f4225a;
+}
+#extraBtn{
+    display: flex;
+    justify-content: space-between;
+}
+
+/* Input field styling */
+input {
+    padding: 12px;
+    text-align: center;
+    border: none;
+    margin: 5px 0;
+    border-radius: 8px;
+    box-shadow: 0 0 0 2px #f4225a;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    width: 100%;
+    max-width: 400px;
+    transition: background-color 0.3s ease;
+}
+
+input::placeholder {
+    color: #ddd;
+}
+
+input:focus {
+    background-color: rgba(255, 255, 255, 0.3);
+    outline: none;
+}
+
+/* Form styling */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px 0;
+}
+
+/* Extra runs buttons container */
+#runs, #extraRuns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0;
+}
+#extraRuns {
+    font-size: 18px;
+    padding: 20px;
+    border-radius: 12px;
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+#runs button, #extraRuns button {
+    flex: 1;
+    margin:  5px;
+}
+
+/* Over-wise result section */
+.overWiseResult {
+    padding: 20px;
+    text-align: center;
+    color: #f0f0f0;
+    border-radius: 15px;
+    background: #f43022 0.4;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    margin-top: 20px;
+}
+
+/* Over-wise result text */
+.overWiseResult h3 {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    color: #f1f1f1;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 10px;
+}
+.overWiseResult h4{
+    margin-top: 10px;
+}
+
+/* Highlighted items in Over-wise result */
+.overWiseResult .highlight {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    margin: 5px 0;
+    color: #fff;
+    font-size: 1rem;
+    background-color: #e74c3c;
+}
+.overWiseResult div {
+    margin-bottom: 10px;
+}
+#ballWiseResult  {
+    margin-top: 20px;
+}
+
+/* Horizontal rule styling */
+hr {
+    width: 100%;
+    border: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.3);
+    margin: 30px 0;
+}
+
+/* Finish button styling */
+#finishBtn {
+    padding: 15px 25px;
+    border-radius: 8px;
+    background-color: #f4225a;
+    color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 30px;
+}
+
+#finishBtn:hover {
+    background-color: #d43f5e;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+#finishBtn:active {
+    background-color: #c13e4a;
+}
+
+/* Animation classes */
+.hit-4 {
+    animation: hit4Animation 1s forwards;
+}
+
+.hit-6 {
+    animation: hit6Animation 1s forwards;
+}
+
+.wicket-animation {
+    animation: wicketAnimation 1s forwards;
+}
+
+.extra-animation-wide {
+    animation: wideBallAnimation 1s forwards;
+}
+
+.extra-animation-no-ball {
+    animation: extraAnimationNoBall 1s forwards;
+}
+
+/* Over-wise result colors */
+.over-wise-hit-4, .over-wise-hit-6, .over-wise-wicket, .over-wise-wide, .over-wise-no-ball {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 50%;
+    margin: 5px;
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+}
+
+.over-wise-hit-4 {
+    background-color: #f39c12;
+}
+
+.over-wise-hit-6 {
+    background-color: #27ae60;
+}
+
+.over-wise-wicket {
+    background-color: #e74c3c;
+}
+
+.over-wise-wide {
+    background-color: #3498db;
+    border-radius: 10px;
+}
+
+.over-wise-no-ball {
+    background-color: #9b59b6;
+    border-radius: 10px;
+}
+
+/* Keyframe animations */
+@keyframes hit4Animation {
+    0% { color: black; }
+    100% { color: #f39c12; }
+}
+
+@keyframes hit6Animation {
+    0% { color: black; }
+    100% { color: #27ae60; }
+}
+
+@keyframes wicketAnimation {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+@keyframes wideBallAnimation {
+    0% { background-color: rgba(52, 152, 219, 0.3); }
+    100% { background-color: rgba(52, 152, 219, 0.5); }
+}
+
+@keyframes extraAnimationNoBall {
+    0% { background-color: #9b59b6; }
+    100% { background-color: transparent; }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .score {
+        flex-direction: column;
+        padding: 20px;
+    }
+    .score .team1, .score .team2 {
+        flex: 1;
+        padding: 20px;
+    }
+
+    #runs, #extraRuns {
+        flex-direction: column;
+        
+    }
+
+    #runs button, #extraRuns button {
+        margin: 5px;
+    }
+}
