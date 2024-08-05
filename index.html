@@ -198,52 +198,59 @@
         );
 
         const OverWiseResult = () => (
-            <div className="overWiseResult">
-                <h3>Over-wise Results</h3>
-                <div>
-                    <h4>Team 1:</h4>
-                    {teamOneOvers.map((over, index) => (
-                        <div key={index}>
-                            <strong>Over {index + 1}:</strong> {over.map((item, i) => (
-                                <span key={i} className={getAnimationClass(item)}>
-                                    {item}&nbsp;
-                                </span>
-                            ))}
-                        </div>
+    <div className="overWiseResult">
+        <h3>Over-wise Results</h3>
+        <div>
+            <h4>Team 1:</h4>
+            {teamOneOvers.length === 0 && <p>No overs yet.</p>}
+            {teamOneOvers.map((over, index) => (
+                <div key={index}>
+                    <strong>Over {index + 1}:</strong> 
+                    {over.map((item, i) => (
+                        <span key={i} className={getAnimationClass(item)}>
+                            {item}&nbsp;
+                        </span>
                     ))}
-                    {currentTeam === 1 && currentOver.length > 0 && (
-                        <div>
-                            <strong>Current Over:</strong> {currentOver.map((item, i) => (
-                                <span key={i} className={getAnimationClass(item)}>
-                                    {item}&nbsp;
-                                </span>
-                            ))}
-                        </div>
-                    )}
                 </div>
+            ))}
+            {currentTeam === 1 && currentOver.length > 0 && (
                 <div>
-                    <h4>Team 2:</h4>
-                    {teamTwoOvers.map((over, index) => (
-                        <div key={index}>
-                            <strong>Over {index + 1}:</strong> {over.map((item, i) => (
-                                <span key={i} className={getAnimationClass(item)}>
-                                    {item}&nbsp;
-                                </span>
-                            ))}
-                        </div>
+                    <strong>Current Over:</strong> 
+                    {currentOver.map((item, i) => (
+                        <span key={i} className={getAnimationClass(item)}>
+                            {item}&nbsp;
+                        </span>
                     ))}
-                    {currentTeam === 2 && currentOver.length > 0 && (
-                        <div>
-                            <strong>Current Over:</strong> {currentOver.map((item, i) => (
-                                <span key={i} className={getAnimationClass(item)}>
-                                    {item}&nbsp;
-                                </span>
-                            ))}
-                        </div>
-                    )}
                 </div>
-            </div>
-        );
+            )}
+        </div>
+        <div>
+            <h4>Team 2:</h4>
+            {teamTwoOvers.length === 0 && <p>No overs yet.</p>}
+            {teamTwoOvers.map((over, index) => (
+                <div key={index}>
+                    <strong>Over {index + 1}:</strong> 
+                    {over.map((item, i) => (
+                        <span key={i} className={getAnimationClass(item)}>
+                            {item}&nbsp;
+                        </span>
+                    ))}
+                </div>
+            ))}
+            {currentTeam === 2 && currentOver.length > 0 && (
+                <div>
+                    <strong>Current Over:</strong> 
+                    {currentOver.map((item, i) => (
+                        <span key={i} className={getAnimationClass(item)}>
+                            {item}&nbsp;
+                        </span>
+                    ))}
+                </div>
+            )}
+        </div>
+    </div>
+);
+
 
         function getAnimationClass(item) {
             if (String(item).includes('4')) return 'over-wise-hit-4';
