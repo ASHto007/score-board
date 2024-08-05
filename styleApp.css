@@ -346,3 +346,74 @@ hr {
         margin: 5px;
     }
 }
+
+/* Responsive Styles for screens with max-width: 360px */
+@media (max-width: 360px) {
+    /* General adjustments for smaller font size */
+    * {
+        padding: 0;
+        margin: 0;
+        font-size: 8px; /* Adjusted for better readability */
+    }
+
+    /* Adjust score container to stack items vertically */
+    .score {
+        flex-direction: column;
+        padding: 10px; /* Slight padding for better spacing */
+    }
+
+    .score .team1, .score .team2 {
+        flex: 1;
+        padding: 5px; /* Reduced padding for smaller screens */
+    }
+
+    /* Stack buttons in a column and reduce margin */
+    #extraBtn {
+        flex-direction: column;
+    }
+
+    /* Adjust buttons for smaller screens */
+    #runs button, #extraRuns button {
+        flex: 1; /* Ensure buttons take full width */
+        margin: 5px 0; /* Reduced margin for smaller spacing */
+        padding: 8px; /* Reduced padding for smaller buttons */
+    }
+
+    /* Form and input adjustments */
+    form {
+        margin: 20px 0; /* Reduced margin */
+    }
+
+    input {
+        padding: 8px; /* Reduced padding */
+        font-size: 14px; /* Slightly smaller font size */
+    }
+
+    /* Over-wise result adjustments */
+    .overWiseResult {
+        padding: 10px; /* Reduced padding */
+        margin-top: 10px; /* Reduced margin */
+    }
+
+    .overWiseResult h3 {
+        font-size: 1.2rem; /* Adjusted font size */
+        margin-bottom: 10px; /* Reduced margin */
+    }
+
+    .overWiseResult h4 {
+        margin-top: 5px; /* Reduced margin */
+    }
+
+    .over-wise-hit-4, .over-wise-hit-6, .over-wise-wicket, .over-wise-wide, .over-wise-no-ball {
+        font-size: 12px; /* Smaller font size for elements */
+        padding: 3px 6px; /* Adjusted padding for smaller elements */
+    }
+
+    /* Additional styling for buttons */
+    #finishBtn {
+        margin-top: 20px; /* Reduced margin */
+        padding: 10px 20px; /* Adjusted padding */
+        font-size: 14px; /* Smaller font size */
+    }
+}
+
