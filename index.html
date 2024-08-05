@@ -287,11 +287,11 @@
                 <div className="app">
                     <h2>Score Keeper App</h2>
                     <div id='extraBtn'>
-                        <button onClick={toggleTeam} id='toggleBtn'>Toggle Team</button>
+                        <button onClick={toggleTeam} id='toggleBtn'><i class="fa-solid fa-user-plus"></i></button>
                         <button onClick={toggleOverWiseResult}>
                             {showOverWiseResult ? "Hide Over-wise Result" : "Show Over-wise Result"}
                         </button>
-                        <button onClick={finishMatch} id='toggleBtn'>Finish</button>
+                        <button onClick={finishMatch} id='toggleBtn'><i class="fa-regular fa-circle-check"></i></button>
                     </div>
                     <div className="score">
                         <div className={`team1 ${currentTeam === 1 ? 'active-team' : ''}`}>
