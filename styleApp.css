@@ -1,5 +1,7 @@
+/* Base styles for all screen sizes */
+
 /* General body styles */
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -28,10 +30,10 @@ h4 {
     padding: 5px;
     text-transform: uppercase;
 }
-h3{
+h3 {
     background: #f4225a;
     padding: 10px;
-    width:50%;
+    width: 50%;
     text-align: center;
     text-transform: uppercase;
     border-radius: 10px;
@@ -62,7 +64,7 @@ h2 {
 }
 
 /* Scores section styling */
-#total{
+#total {
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -86,8 +88,8 @@ h2 {
 .active-team {
     background-color: #f4225a;
 }
-/* Buttons container styling */
 
+/* Buttons container styling */
 
 /* Individual button styling */
 button, #formBtn button {
@@ -113,10 +115,10 @@ button:active, #formBtn button:active {
     transform: translateY(-1px) scale(0.97);
 }
 
-#toggleBtn{
+#toggleBtn {
     background-color: #f4225a;
 }
-#extraBtn{
+#extraBtn {
     display: flex;
     justify-content: space-between;
 }
@@ -171,7 +173,7 @@ form {
 }
 #runs button, #extraRuns button {
     flex: 1;
-    margin:  5px;
+    margin: 5px;
 }
 
 /* Over-wise result section */
@@ -193,7 +195,7 @@ form {
     border-bottom: 1px solid rgba(255, 255, 255, 0.3);
     padding-bottom: 10px;
 }
-.overWiseResult h4{
+.overWiseResult h4 {
     margin-top: 10px;
 }
 
@@ -210,7 +212,7 @@ form {
 .overWiseResult div {
     margin-bottom: 10px;
 }
-#ballWiseResult  {
+#ballWiseResult {
     margin-top: 20px;
 }
 
@@ -326,12 +328,15 @@ hr {
     100% { background-color: transparent; }
 }
 
-/* Responsive Styles */
+/* Media Queries */
+
+/* Tablets and larger phones (max-width: 768px) */
 @media (max-width: 768px) {
     .score {
         flex-direction: column;
         padding: 20px;
     }
+
     .score .team1, .score .team2 {
         flex: 1;
         padding: 20px;
@@ -339,7 +344,6 @@ hr {
 
     #runs, #extraRuns {
         flex-direction: column;
-        
     }
 
     #runs button, #extraRuns button {
@@ -347,73 +351,89 @@ hr {
     }
 }
 
-/* Responsive Styles for screens with max-width: 360px */
+/* Small phones (max-width: 480px) */
+@media (max-width: 480px) {
+    body {
+        font-size: 14px;
+    }
+
+    .app {
+        padding: 15px;
+    }
+
+    #root {
+        padding: 20px;
+    }
+
+    input {
+        font-size: 14px;
+    }
+
+    #finishBtn {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
+
+/* Extra small phones (max-width: 360px) */
 @media (max-width: 360px) {
-    /* General adjustments for smaller font size */
     * {
         padding: 0;
         margin: 0;
-        font-size: 8px; /* Adjusted for better readability */
+        font-size: 8px;
     }
 
-    /* Adjust score container to stack items vertically */
     .score {
         flex-direction: column;
-        padding: 10px; /* Slight padding for better spacing */
+        padding: 10px;
     }
 
     .score .team1, .score .team2 {
         flex: 1;
-        padding: 5px; /* Reduced padding for smaller screens */
+        padding: 5px;
     }
 
-    /* Stack buttons in a column and reduce margin */
     #extraBtn {
         flex-direction: column;
     }
 
-    /* Adjust buttons for smaller screens */
     #runs button, #extraRuns button {
-        flex: 1; /* Ensure buttons take full width */
-        margin: 5px 0; /* Reduced margin for smaller spacing */
-        padding: 8px; /* Reduced padding for smaller buttons */
+        flex: 1;
+        margin: 5px 0;
+        padding: 8px;
     }
 
-    /* Form and input adjustments */
     form {
-        margin: 20px 0; /* Reduced margin */
+        margin: 20px 0;
     }
 
     input {
-        padding: 8px; /* Reduced padding */
-        font-size: 14px; /* Slightly smaller font size */
+        padding: 8px;
+        font-size: 14px;
     }
 
-    /* Over-wise result adjustments */
     .overWiseResult {
-        padding: 10px; /* Reduced padding */
-        margin-top: 10px; /* Reduced margin */
+        padding: 10px;
+        margin-top: 10px;
     }
 
     .overWiseResult h3 {
-        font-size: 1.2rem; /* Adjusted font size */
-        margin-bottom: 10px; /* Reduced margin */
+        font-size: 1.2rem;
+        margin-bottom: 10px;
     }
 
     .overWiseResult h4 {
-        margin-top: 5px; /* Reduced margin */
+        margin-top: 5px;
     }
 
     .over-wise-hit-4, .over-wise-hit-6, .over-wise-wicket, .over-wise-wide, .over-wise-no-ball {
-        font-size: 12px; /* Smaller font size for elements */
-        padding: 3px 6px; /* Adjusted padding for smaller elements */
+        font-size: 12px;
+        padding: 3px 6px;
     }
 
-    /* Additional styling for buttons */
     #finishBtn {
-        margin-top: 20px; /* Reduced margin */
-        padding: 10px 20px; /* Adjusted padding */
-        font-size: 14px; /* Smaller font size */
+        margin-top: 20px;
+        padding: 10px 20px;
+        font-size: 14px;
     }
 }
-
