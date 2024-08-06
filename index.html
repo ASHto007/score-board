@@ -230,6 +230,25 @@
             warningMessage = '';
             rootElement.render(<App />);
         }
+        const finshMatch(){
+            let hit = null;
+        let teamOneScore = 0;
+        let teamTwoScore = 0;
+        let teamOneWickets = 0;
+        let teamTwoWickets = 0;
+        let currentTeam = 1; // 1 for Team 1, 2 for Team 2
+        let comment = React.createRef();
+        let ballWiseResult = [];
+        let extraScore = 0;
+        let currentOver = [];
+        let teamOneOvers = [];
+        let teamTwoOvers = [];
+        let ballsInOver = 0;
+        let warningMessage = '';
+        let showOverWiseResult = false;
+
+            rootElement.render(<App />);
+        }
 
 
 
@@ -331,6 +350,7 @@
                         {!showOverWiseResult && (
                             <button onClick={toggleOverWiseResult} className='toggle'><i className="fa-solid fa-location-arrow fa-rotate-by"></i></button>
                         )}
+                        <button onClick={finishMatch} className='toggle'><i className="fa-duotone fa-solid fa-check"></i></button>
                     </div>
                     <h1>Team {currentTeam === 1 ? "One" : "Two"} Batting</h1>
                     <div id='scoreboard'>
