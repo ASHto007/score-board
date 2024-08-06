@@ -5,10 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styleApp.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
     <script src="https://kit.fontawesome.com/d2d502b6ae.js" crossorigin="anonymous"></script>
     <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
@@ -31,11 +28,9 @@
         let currentOver = [];
         let teamOneOvers = [];
         let teamTwoOvers = [];
-        let ballsInOverTeam1 = 0;
-        let ballsInOverTeam2 = 0;
+        let ballsInOver = 0;
         let warningMessage = '';
         let showOverWiseResult = false;
-
 
         function addScore(num) {
             hit = num;
@@ -72,15 +67,16 @@
             // Save the current over data to the respective team's overs array
             if (currentTeam === 1) {
                 if (currentOver.length > 0) teamOneOvers.push(currentOver);
-                currentOver = [];
-                ballsInOverTeam1 = 0;
+                currentTeam = 2;
             } else {
                 if (currentOver.length > 0) teamTwoOvers.push(currentOver);
-                currentOver = [];
-                ballsInOverTeam2 = 0;
+                currentTeam = 1;
             }
 
-            currentTeam = currentTeam === 1 ? 2 : 1;
+            // Reset the current over and ball count for the new team
+            currentOver = [];
+            ballsInOver = 0;
+
             rootElement.render(<App />);
         }
 
@@ -160,6 +156,9 @@
 
         const Form = () => (
             <form onSubmit={handleEvent}>
+                <div id="input">
+                    <input type="text" value={hit || ""} readOnly />
+                </div>
                 <div id="formBtn">
                     <button type="submit">Submit</button>
                 </div>
@@ -185,8 +184,7 @@
                     teamTwoWickets += 1;
                 }
                 currentOver.push(`${hit}`);
-                if (currentTeam === 1) ballsInOverTeam1 += 1;
-                else ballsInOverTeam2 += 1;
+                ballsInOver += 1;
                 animationClass = 'wicket-animation';
                 hitClass = 'wicket-animation';
                 ballWiseResult.unshift({ hit, comment: comment.current ? comment.current.value : '', animationClass: hitClass });
@@ -209,66 +207,86 @@
                 currentOver.push(`${hit}`);
                 hitClass = hit === 4 ? 'hit-4' : hit === 6 ? 'hit-6' : '';
                 animationClass = hit === 4 ? 'hit4Animation' : hit === 6 ? 'hit6Animation' : '';
-                ballWiseResult.unshift({ hit, comment: comment.current ? comment.current.value : '', animationClass: animationClass });
-                if (currentTeam === 1) ballsInOverTeam1 += 1;
-                else ballsInOverTeam2 += 1;
+                ballWiseResult.unshift({ hit, comment: comment.current ? comment.current.value : '', animationClass: hitClass });
+                ballsInOver += 1;
             }
 
-            if (currentTeam === 1 && ballsInOverTeam1 === 6) {
-                currentOver.push('O');
-                teamOneOvers.push(currentOver);
-                currentOver = [];
-                ballsInOverTeam1 = 0;
-            } else if (currentTeam === 2 && ballsInOverTeam2 === 6) {
-                currentOver.push('O');
-                teamTwoOvers.push(currentOver);
-                currentOver = [];
-                ballsInOverTeam2 = 0;
+            // Check if over is completed
+            if (ballsInOver >= 6) {
+                console.log('Over completed. Adding to overs array.');
+                if (currentTeam === 1) {
+                    teamOneOvers.push(currentOver);
+                } else {
+                    teamTwoOvers.push(currentOver);
+                }
+                currentOver = []; // Reset current over
+                ballsInOver = 0;  // Reset balls in over
             }
 
+            // Reset hit and extraScore for the next input
             hit = '';
             extraScore = 0;
-            if (comment.current) comment.current.value = '';
+            if (comment.current) comment.current.value = ''; // Reset comment input field
             warningMessage = '';
             rootElement.render(<App />);
         }
 
-        function OverWiseResult() {
-            return (
-                <div className="overWiseResult">
-                    <h3>Over-wise Results</h3>
-                    <div>
-                        <h4>Team 1:</h4>
-                        {teamOneOvers.length === 0 && <p>No overs yet.</p>}
-                        {teamOneOvers.map((over, index) => (
-                            <div key={index}>
-                                <strong>Over {index + 1}:</strong>
-                                {over.map((item, i) => (
-                                    <span key={i} className={getAnimationClass(item)}>
-                                        {item}&nbsp;
-                                    </span>
-                                ))}
-                            </div>
-                        ))}
-                    </div>
-                    <div>
-                        <h4>Team 2:</h4>
-                        {teamTwoOvers.length === 0 && <p>No overs yet.</p>}
-                        {teamTwoOvers.map((over, index) => (
-                            <div key={index}>
-                                <strong>Over {index + 1}:</strong>
-                                {over.map((item, i) => (
-                                    <span key={i} className={getAnimationClass(item)}>
-                                        {item}&nbsp;
-                                    </span>
-                                ))}
-                            </div>
-                        ))}
-                    </div>
-                    <button onClick={toggleOverWiseResult}><i className="fa-solid fa-minus"></i></button>
+
+
+        const OverWiseResult = () => (
+            <div className="overWiseResult">
+                <h3>Over-wise Results</h3>
+                <div>
+                    <h4>Team 1:</h4>
+                    {teamOneOvers.length === 0 && <p>No overs yet.</p>}
+                    {teamOneOvers.map((over, index) => (
+                        <div key={index}>
+                            <strong>Over {index + 1}:</strong>
+                            {over.map((item, i) => (
+                                <span key={i} className={getAnimationClass(item)}>
+                                    {item}&nbsp;
+                                </span>
+                            ))}
+                        </div>
+                    ))}
+                    {currentTeam === 1 && currentOver.length > 0 && (
+                        <div>
+                            <strong>Current Over:</strong>
+                            {currentOver.map((item, i) => (
+                                <span key={i} className={getAnimationClass(item)}>
+                                    {item}&nbsp;
+                                </span>
+                            ))}
+                        </div>
+                    )}
                 </div>
-            );
-        }
+                <div>
+                    <h4>Team 2:</h4>
+                    {teamTwoOvers.length === 0 && <p>No overs yet.</p>}
+                    {teamTwoOvers.map((over, index) => (
+                        <div key={index}>
+                            <strong>Over {index + 1}:</strong>
+                            {over.map((item, i) => (
+                                <span key={i} className={getAnimationClass(item)}>
+                                    {item}&nbsp;
+                                </span>
+                            ))}
+                        </div>
+                    ))}
+                    {currentTeam === 2 && currentOver.length > 0 && (
+                        <div>
+                            <strong>Current Over:</strong>
+                            {currentOver.map((item, i) => (
+                                <span key={i} className={getAnimationClass(item)}>
+                                    {item}&nbsp;
+                                </span>
+                            ))}
+                        </div>
+                    )}
+                </div>
+                <button onClick={toggleOverWiseResult}><i class="fa-solid fa-location-arrow"></i></button>
+            </div>
+        );
 
         function BallWiseResult() {
             return (
@@ -302,7 +320,6 @@
             if (parseInt(hit) === 6) return 'hit-6';
             return '';
         }
-
         function finishMatch() {
             hit = null;
             teamOneScore = 0;
@@ -314,8 +331,7 @@
             currentOver = [];
             teamOneOvers = [];
             teamTwoOvers = [];
-            ballsInOverTeam1 = 0;
-            ballsInOverTeam2 = 0;
+            ballsInOver = 0;
             warningMessage = '';
             showOverWiseResult = false;
 
@@ -323,56 +339,29 @@
             rootElement.render(<App />);
         }
 
-        function App() {
-            // Determine the class to apply based on the current active team
-            const mainClass = currentTeam === 1 ? 'team-1-active' : 'team-2-active';
 
+
+        function App() {
             return (
                 <div id='main'>
                     <div id='teamToggle'>
-                        <button onClick={toggleTeam} className='toggle'><i className="fa-duotone fa-solid fa-users"></i></button>
+                        <button onClick={toggleTeam} className='toggle'><i className="fa-duotone fa-solid fa-wand-magic"></i></button>
                         {!showOverWiseResult && (
-                            <button onClick={toggleOverWiseResult} className='toggle'><i className="fa-solid fa-plus"></i></button>
+                            <button onClick={toggleOverWiseResult} className='toggle'><i className="fa-solid fa-location-arrow fa-rotate-by"></i></button>
                         )}
-                        <button onClick={finishMatch} className='toggle'><i className="fa-solid fa-multiply fa-rotate-by"></i></button>
+                        <button onClick={finishMatch} className='toggle'><i className="fa-solid fa-check fa-rotate-by"></i></button>
                     </div>
-                    
-                    <div id='scoreboard' className={mainClass}>
-                        <div className="score" >
-                            <div className='team1'>
+                    <h1>Team {currentTeam === 1 ? "One" : "Two"} Batting</h1>
+                    <div id='scoreboard'>
+                        <div className="score">
+                            <div>
                                 <p>Team 1</p>
                                 <h1>{teamOneScore}/{teamOneWickets}</h1>
-                                <p>Overs: {teamOneOvers.length}.{ballsInOverTeam1}</p>
-                                {currentTeam === 1 && currentOver.length > 0 && (
-                                    <div>
-                                        <strong>Current Over:</strong>
-                                        {currentOver.map((item, i) => (
-                                            <span key={i} className={getAnimationClass(item)}>
-                                                {item}&nbsp;
-                                            </span>
-                                        ))}
-                                    </div>
-                                )}
                             </div>
-
-                            <div id="input">
-                                <input type="text" value={hit || ""} readOnly />
-                            </div>
-                            <div className='team2'>
+                            <div>
                                 <p>Team 2</p>
                                 <h1>{teamTwoScore}/{teamTwoWickets}</h1>
-                                <p>Overs: {teamTwoOvers.length}.{ballsInOverTeam2}</p>
                             </div>
-                            {currentTeam === 2 && currentOver.length > 0 && (
-                                <div>
-                                    <strong>Current Over:</strong>
-                                    {currentOver.map((item, i) => (
-                                        <span key={i} className={getAnimationClass(item)}>
-                                            {item}&nbsp;
-                                        </span>
-                                    ))}
-                                </div>
-                            )}
                         </div>
                     </div>
                     <ScoreButtons
@@ -388,6 +377,8 @@
                 </div>
             );
         }
+
+
 
         const rootElement = ReactDOM.createRoot(document.getElementById("root"));
         rootElement.render(<App />);
