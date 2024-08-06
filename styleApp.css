@@ -37,8 +37,8 @@ body {
 
 .toggle {
     display: flex;
-    width: 40px;
-    height: 40px;
+    width: 15px;
+    height: 15px;
     padding: 10px;
     align-items: center;
     justify-content: center;
@@ -118,9 +118,9 @@ body {
 button {
     padding: 12px 20px;
     margin: 5px;
-    font-size: 1.1em;
+    font-size: 1.2em;
     border: none;
-    border-radius: 30px;
+    border-radius: 50px;
     background-color: #ffa500; /* Orange */
     color: #ffffff; /* White */
     cursor: pointer;
@@ -139,7 +139,7 @@ button:active {
 
 #input, #formBtn {
     text-align: center;
-    margin-bottom: 5px;
+    margin-bottom: 0px;
 }
 
 #input input {
