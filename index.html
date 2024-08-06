@@ -362,8 +362,7 @@
                                 <p>Team 2</p>
                                 <h1>{teamTwoScore}/{teamTwoWickets}</h1>
                                 <p>Overs: {teamTwoOvers.length}.{ballsInOverTeam2}</p>
-                            </div>
-                            {currentTeam === 2 && currentOver.length > 0 && (
+                                {currentTeam === 2 && currentOver.length > 0 && (
                                 <div>
                                     <strong>Current Over:</strong>
                                     {currentOver.map((item, i) => (
@@ -373,6 +372,8 @@
                                     ))}
                                 </div>
                             )}
+                            </div>
+                            
                         </div>
                     </div>
                     <ScoreButtons
